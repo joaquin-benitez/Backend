@@ -11,19 +11,19 @@ class Usuario{
     };
 
     addMascota (mascota) {
-        return mascotas.push('mascota')
+        return mascotas.push(mascota)
     };
 
     countMascotas (){
-        return this.mascotas
+        return this.mascotas.length
     };
 
     addBook (nombre, autor){
-        return
+        return this.libros.push(nombre,autor)
     };
 
     getBookNames() {
-        return this.libros
+        return this.libros.map.nombre
     }
     
     

@@ -1,45 +1,62 @@
-// >> Consigna: Implementar programa que contenga una clase llamada Contenedor que reciba el nombre del archivo con el que va a trabajar e implemente los siguientes métodos:
+// Se creará una instancia de la clase “ProductManager”
+// Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
+// Se llamará al método “addProduct” con los campos:
+// title: “producto prueba”
+// description:”Este es un producto prueba”
+// price:200,
+// thumbnail:”Sin imagen”
+// code:”abc123”,
+// stock:25
+// El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
+// Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
+// Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
+// Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
 
-// save(Object): Number - Recibe un objeto, lo guarda en el archivo, devuelve el id asignado.
-// getById(Number): Object - Recibe un id y devuelve el objeto con ese id, o null si no está.
-// getAll(): Object[] - Devuelve un array con los objetos presentes en el archivo.
-// deleteById(Number): void - Elimina del archivo el objeto con el id buscado.
-// deleteAll(): void - Elimina todos los objetos presentes en el archivo.
 
-// Aspectos a incluir en el entregable: 
-// El método save incorporará al producto un id numérico, que deberá ser siempre uno más que el id del último objeto agregado (o id 1 si es el primer objeto que se agrega) y no puede estar repetido.
-// Tomar en consideración el contenido previo del archivo, en caso de utilizar uno existente.
-// Implementar el manejo de archivos con el módulo fs de node.js, utilizando promesas con async/await y manejo de errores.
-// Probar el módulo creando un contenedor de productos, que se guarde en el archivo: “productos.txt”
-// Incluir un llamado de prueba a cada método, y mostrando por pantalla según corresponda para verificar el correcto funcionamiento del módulo construído.
+class ProductManager{
+  constructor(product){
+      this.product = [];
+      
+  }
 
-const fs=require('fs')
+  getProducts () { 
+      return this.product;
+  };
 
-class contenedor{
-    constructor(archivo){
-        this.archivo = {archivo};   
-    }
-
-	async save(obj){
-        return this.archivo.push(obj)
+  
+  addProduct (title, description, price, thumbnail, code, stock) {
+    const newProduct = {
+      id: +1,
+      title: "producto prueba",
+      description:"Este es un producto prueba",
+      price: 200,
+      thumbnail:"Sin imagen",
+      code: "abc123",
+      stock: 25,
     };
 
-	async getById(id) {
-        return this.archivo.find(id)
+    this.product = [...this.product, newProduct];
+  };
+
+
+  getProductById (idProduct){
+    const product = this.product.find((pr) => pr.id === idProduct);
+
+    if (!product) {
+      throw new Error(`Product con ID ${idProduct} no encontrado`);
     };
 
-    async getAll() {
-        return fs.promises.readFile(`${this.archivo}`)
-    };
+    return product
+  };
+      
+};
 
-	async deleteById(id) {
-        return 
-    };
+const manager = new ProductManager();
 
-    async deleteAll(){
-    	await fs.promises.unlink({archivo})  
-    }
-}
+console.log(manager.getProducts());
 
+manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
+console.log(manager.getProducts());
 
-
+manager.getProductById(1);
+console.log(manager.getProductById());

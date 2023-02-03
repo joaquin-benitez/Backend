@@ -14,42 +14,43 @@
 
 
 class ProductManager{
-  constructor(product){
-      this.product = [];
-      
-  }
+
+  product = [];
+  constructor () {}
 
   getProducts () { 
       return this.product;
   };
 
   
-  addProduct (title, description, price, thumbnail, code, stock) {
+  addProduct(title="producto prueba", description="Este es un producto prueba", price=200, thumbnail="sin imagen", code="abc123", stock="25") {
     const newProduct = {
-      id: +1,
-      title: "producto prueba",
-      description:"Este es un producto prueba",
-      price: 200,
-      thumbnail:"Sin imagen",
-      code: "abc123",
-      stock: 25,
+      id: this.product.length,
+      title,
+      description,
+      price,
+      thumbnail,
+      code,
+      stock,
     };
 
     this.product = [...this.product, newProduct];
+
   };
 
 
-  getProductById (idProduct){
-    const product = this.product.find((pr) => pr.id === idProduct);
-
-    if (!product) {
-      throw new Error(`Product con ID ${idProduct} no encontrado`);
-    };
-
-    return product
+  getProductById (id){
+    const product = this.product.find((pr) => pr.id === id) ;
+      if (!product) {
+        throw new Error(`Producto con ID ${id} no encontrado`);
+      }else return product
   };
-      
+
+    
+  
 };
+      
+
 
 const manager = new ProductManager();
 
@@ -58,8 +59,5 @@ console.log(manager.getProducts());
 manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
 console.log(manager.getProducts());
 
-manager.getProductById(1);
+manager.getProductById(0);
 console.log(manager.getProductById());
-
-
-hola

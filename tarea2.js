@@ -23,7 +23,7 @@ class ProductManager{
   };
 
   
-  addProduct(title="producto prueba", description="Este es un producto prueba", price=200, thumbnail="sin imagen", code="abc123", stock="25") {
+  addProduct(title, description, price, thumbnail, code, stock) {
     const newProduct = {
       id: this.product.length,
       title,
@@ -60,4 +60,4 @@ manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
 console.log(manager.getProducts());
 
 manager.getProductById(0);
-console.log(manager.getProductById());
+console.log(manager.getProductById(0));

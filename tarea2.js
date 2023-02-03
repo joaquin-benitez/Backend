@@ -60,3 +60,6 @@ console.log(manager.getProducts());
 
 manager.getProductById(1);
 console.log(manager.getProductById());
+
+
+hola

@@ -13,6 +13,7 @@
 // Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
 
 
+
 class ProductManager{
 
   product = [];
@@ -24,6 +25,21 @@ class ProductManager{
 
   
   addProduct(title, description, price, thumbnail, code, stock) {
+   
+    const productWithSameCodeExists = this.product.some(
+      (p) => p.code === code
+    );
+
+    if (productWithSameCodeExists) {
+      throw new Error("Producto ya existente");
+    };
+
+
+    if(!title || !description || !price || !thumbnail || !code || !stock){
+      throw new Error(`Falta un elemento del Producto`);
+    };
+
+      
     const newProduct = {
       id: this.product.length,
       title,

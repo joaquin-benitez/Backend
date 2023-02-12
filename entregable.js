@@ -63,11 +63,28 @@ class ProductManager {
       }else return idProductToValidate;
   }
 
-  async updateProduct(id,xxx){
+  async updateProduct(id,dataToUpdate){
+
+    const products = await this.getProducts();
+
+    const idProduct = products.find((p) => p.id === id);
+      if (!idProduct) {
+        throw new Error(`Producto con ID ${id} no encontrado`);
+      }
+
+    dataToUpdate = {title, description, price, thumbnail, code, stock};
+
+
+
+    const updateProductinDB = [...products, dataToUpdate];
+
+    await fs.promises.writeFile(this.#path, JSON.stringify(updateProductinDB));
+
 
   }
 
   async deleteProduct(){
+    const products = await this.getProducts();
 
   }
 
@@ -81,17 +98,17 @@ async function main() {
   
     console.log(products);
     
-    await manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
-    console.log( await manager.getProducts());
+    // await manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
+    // console.log( await manager.getProducts());
 
-    await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
-    console.log( await manager.getProducts());
+    // await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
+    // console.log( await manager.getProducts());
 
     
-
-
     await manager.getProductById(1);
     console.log(await manager.getProductById(1));
+
+    await manager.updateProduct(1,(title="cafe", description="verde", price=15, thumbnail="none", code="ggg778", stock=50));
 
 }
 

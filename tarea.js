@@ -101,6 +101,98 @@ alert(b.getBar()); // alerts null :(
 //Source: https://stackoverflow.com/questions/12610394
 
 
+const fs = require("fs");
+const crypto = require("crypto");
+
+class UserManager {
+  #path;
+
+  constructor(path) {
+    this.#path = path;
+  }
+
+  async createUser(firstName, lastName, username, password) {
+    const salt = crypto.randomBytes(16).toString("hex");
+    const hashedPassword = crypto
+      .pbkdf2Sync(password, salt, 1000, 64, "sha512")
+      .toString("hex");
+
+    const newUser = {
+      firstName,
+      lastName,
+      username,
+      password: {
+        hash: hashedPassword,
+        salt,
+      },
+    };
+
+    const users = await this.getUsers();
+
+    const updatedUsers = [...users, newUser];
+
+    await fs.promises.writeFile(this.#path, JSON.stringify(updatedUsers));
+  }
+
+  async validateUser(username, password) {
+    const users = await this.getUsers();
+
+    const userToValidate = users.find((u) => u.username === username);
+
+    if (!userToValidate) {
+      throw new Error(`User with username ${username} doesn't exist`);
+    }
+
+    const hashedInputPassword = crypto
+      .pbkdf2Sync(password, userToValidate.password.salt, 1000, 64, "sha512")
+      .toString("hex");
+
+    if (userToValidate.password.hash === hashedInputPassword) {
+      return "Logueado";
+    } else {
+      throw new Error("Contraseña inválida");
+    }
+  }
+
+  async getUsers() {
+    try {
+      const users = await fs.promises.readFile(this.#path, "utf-8");
+
+      return JSON.parse(users);
+    } catch (e) {
+      return [];
+    }
+  }
+}
+
+async function main() {
+  const manager = new UserManager("./Users.json");
+
+  let users = await manager.getUsers();
+
+  console.log(users);
+
+  // await manager.createUser("Valentino", "Araya", "valen", "password");
+
+  users = await manager.getUsers();
+  console.log(users);
+
+  const validationResult = await manager.validateUser("valen", "password");
+  console.log(validationResult);
+}
+
+main();
+
+updateProduct(productId, dataToUpdate) 
+  // Aca irian checks de que la data tenga sentido, no se incluya el ID, y demas
+
+  const products = await this.getProducts();
+
+  const updatedProducts = products.map((p) => p.id === productId ? {...p, ...dataToUpdate} : p)
+                                       
+  // ...resto del codigo de escritura
+
+
 
 
 

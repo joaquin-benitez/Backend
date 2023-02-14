@@ -81,10 +81,18 @@ class ProductManager {
 
     const products = await this.getProducts();
 
-    const deleteProducts = products.map((p) => p.id === id ? { } : p)
-    
-    await fs.promises.writeFile(this.#path, JSON.stringify(deleteProducts));
+    const product = products.find((p) => p.id === parseInt(id));
+      
+    const index = products.indexOf(product)
 
+    products.splice(index,1)
+
+    
+    
+
+    await fs.promises.writeFile(this.#path, JSON.stringify(products));
+    
+    
   }
 
 }
@@ -97,24 +105,25 @@ async function main() {
   
     console.log(products);
     
-      // await manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
-      // console.log( await manager.getProducts());
+    // await manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
+    // console.log( await manager.getProducts());
 
-      // await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
-      // console.log( await manager.getProducts());
+    // await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
+    // console.log( await manager.getProducts());
 
     
     await manager.getProductById(1);
     console.log(await manager.getProductById(1));
 
-    await manager.updateProduct(1,(title="cafe", description="verde", price=15, thumbnail="none", code="ggg778", stock=50));
-    console.log(products);
+    // await manager.updateProduct(1,(title="cafe", description="verde", price=15, thumbnail="none", code="ggg778", stock=50));
+    
 
     await manager.deleteProduct(1);
-    console.log(products);
+    
 
 }
 
 
 
 main();
+

@@ -7,7 +7,11 @@ const manager = new ProductManager("./Products.json");
 
 
 
-app.get("products", (req, res) => {
+app.get("products", async (req, res) => {
+    
+    const products = await manager.getProducts();
+
+    res.send(products)
 
 });
 
@@ -19,9 +23,13 @@ app.get("/products/:id/", async (req, res) => {
 
     const {id}= req.params;
     
-    const product = products.find((p) => p.id === parseInt(id));
+    const product = products.find((p) => p.id === id);
 
-    res.send(product);
+    if (!product) {
+        throw new Error(`Producto con ID ${id} no encontrado`);
+      }else res.send(product);
+
+    
 });
 
 

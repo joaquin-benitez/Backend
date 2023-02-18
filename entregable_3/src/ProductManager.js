@@ -1,4 +1,4 @@
-// const fs = require("fs");d
+import fs from "fs";
 
 class ProductManager {
   #path;
@@ -99,17 +99,34 @@ class ProductManager {
 
 
 // async function main() {
-//     const manager = new ProductManager("./Products.json");
+//      const manager = new ProductManager("./Products.json");
   
 //     let products = await manager.getProducts();
   
 //     console.log(products);
     
-    // await manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
-    // console.log( await manager.getProducts());
+//     await manager.addProduct("arroz","arroz blanco", 40,"Sin Imagen", "zzz420", 50);
+//     console.log( await manager.getProducts());
 
-    // await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
-    // console.log( await manager.getProducts());
+//     await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("azucar","blanca", 10,"Sin Imagen", "zkz789", 10);
+//     console.log( await manager.getProducts());
+
+//     await manager.addProduct("mayonesa","natura", 20,"Sin Imagen", "grr778", 20);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("sabora","sas", 10,"Sin Imagen", "ggg778", 20);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("yerba","canaria", 900,"Sin Imagen", "ggg779", 20);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("yerba","mañanita", 10,"Sin Imagen", "ggg780", 30);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("leche","ilolay", 100,"Sin Imagen", "ggg781", 30);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("leche","tregar", 90,"Sin Imagen", "ggg782", 50);
+//     console.log( await manager.getProducts());
+//     await manager.addProduct("queso","ilolay", 10,"Sin Imagen", "ggg783", 50);
+//     console.log( await manager.getProducts());
 
     
     // await manager.getProductById(1);
@@ -121,10 +138,10 @@ class ProductManager {
     // await manager.deleteProduct(1);
     
 
-// }
+//  }
 
 
 
-// main();
+//  main();
 
 export default ProductManager;

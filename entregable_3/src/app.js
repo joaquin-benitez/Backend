@@ -16,7 +16,15 @@ app.get("/products", async (req, res) => {
     
     const products = await manager.getProducts();
 
-    res.send(products)
+    const {limit} = req.query;  
+    
+    if (limit) {
+        return res.send(products.splice(0,limit));
+    };
+    
+    
+    res.send(products);
+
 
 });
 

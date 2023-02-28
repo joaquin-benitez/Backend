@@ -18,7 +18,7 @@ export class ProductManager {
     }
   }
 
-  async addProduct(title, description, price, thumbnail, code, stock) {
+  async addProduct(title, description, price, thumbnails, code, stock) {
    
     const products = await this.getProducts();
 
@@ -29,7 +29,7 @@ export class ProductManager {
         }
   
   
-    if(!title || !description || !price || !thumbnail || !code || !stock){
+    if(!title || !description || !price || !thumbnails || !code || !stock){
         throw new Error(`Falta un elemento del Producto`);
     };
   

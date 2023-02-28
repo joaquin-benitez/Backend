@@ -94,14 +94,14 @@ export class ProductManager {
 }
 
 
-//   async function main() {
-//      const manager = new ProductManager("./db/products.json");
-//     let products = await manager.getProducts(); 
+//    async function main() {
+//      const manager = new ProductManager("./products.json");
+//    let products = await manager.getProducts(); 
 //    console.log(products);
-//     await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
+//         await manager.addProduct("cafe","negro", 10,"Sin Imagen", "ggg777", 50);
 //      console.log( await manager.getProducts());
 //     await manager.addProduct("azucar","blanca", 10,"Sin Imagen", "zkz789", 10);
-//     console.log( await manager.getProducts());   
+//      console.log( await manager.getProducts());   
 //    }
 
 //   main();

@@ -2,10 +2,10 @@ import { Router } from "express";
 import { ProductManager } from "../controller/productsController.js";
 
 const productsRouter = Router();
-const productManager = new ProductManager("./db/products.json");
+const productManager = new ProductManager("./src/db/products.json");
 
-productsRouter.get("/products", async (req, res) => {
-    const products = await manager.getProducts();
+productsRouter.get("/", async (req, res) => {
+    const products = await productManager.getProducts();
     const {limit} = req.query;  
     
     if (limit) {
@@ -23,9 +23,11 @@ productsRouter.get("/:pid/", async (req, res) => {
 });
 
 productsRouter.post("/", async (req, res) => {
-    const product = await req.body;
-    const newProduct = await productManager.addProduct(product);
+    const {title, description, price, thumbnails, code, stock}= req.body;
+    
+    const newProduct = await productManager.addProduct(title, description, price, thumbnails, code, stock);
     res.json({ message: "producto creado con éxito", newProduct });
+
 });
   
 productsRouter.put("/:pid", async (req, res) => {

@@ -38,5 +38,15 @@
         "status": true,
         "code": "xxs570",
         "stock": 10
+    },
+    {
+        "id": 5,
+        "title": "capuchino",
+        "description": "italiano",
+        "price": 35,
+        "thumbnails": [],
+        "status": true,
+        "code": "xxs580",
+        "stock": 10
     }
 ]

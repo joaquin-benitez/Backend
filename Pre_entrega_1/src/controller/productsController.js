@@ -62,14 +62,16 @@ export class ProductManager {
 
   async updateProduct(id,dataToUpdate){
     
-    dataToUpdate = {title, description, price, thumbnail, code, stock};
-    
     const products = await this.getProducts();
-
-    const updatedProducts = products.map((p) => p.id === id ? {...p, ...dataToUpdate} : p);
-
-
-    await fs.promises.writeFile(this.#path, JSON.stringify(updatedProducts));
+    const index = products.findIndex((product) => product.id === parseInt(id));
+    if (index === -1) {
+      throw new Error("Producto no encontrado");
+    } else {
+      const updatedProduct = { ...products[index], ...dataToUpdate };
+      products.splice(index, 1, updatedProduct);
+      await fs.promises.writeFile(this.#path, JSON.stringify(products));
+      return updatedProduct;
+    }
     
   }
 

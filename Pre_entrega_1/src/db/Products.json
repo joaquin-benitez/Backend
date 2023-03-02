@@ -31,12 +31,12 @@
     },
     {
         "id": 5,
-        "title": "capuchino",
-        "description": "italiano",
+        "title": "latte",
+        "description": "latte",
         "price": 35,
-        "thumbnails": [],
+        "thumbnails": "none",
         "status": true,
-        "code": "xxs580",
+        "code": "lle511",
         "stock": 10
     }
 ]

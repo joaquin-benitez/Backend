@@ -1,15 +1,5 @@
 [
     {
-        "id": 1,
-        "title": "te",
-        "description": "verde",
-        "price": 25,
-        "thumbnails": [],
-        "status": true,
-        "code": "zzs425",
-        "stock": 10
-    },
-    {
         "id": 2,
         "title": "cafe",
         "description": "colombiano",

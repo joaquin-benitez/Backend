@@ -54,7 +54,7 @@ export class ProductManager {
 
     const products = await this.getProducts();
 
-     const idProductToValidate = products.find((p) => p.id === id);
+     const idProductToValidate = products.find((p) => p.id === parseInt(id));
       if (!idProductToValidate) {
         throw new Error(`Producto con ID ${id} no encontrado`);
       }else return idProductToValidate;
@@ -66,11 +66,11 @@ export class ProductManager {
     
     const products = await this.getProducts();
 
-    const updatedProducts = products.map((p) => p.id === id ? {...p, ...dataToUpdate} : p)
+    const updatedProducts = products.map((p) => p.id === id ? {...p, ...dataToUpdate} : p);
 
 
     await fs.promises.writeFile(this.#path, JSON.stringify(updatedProducts));
-
+    
   }
 
   async deleteProduct(id) {

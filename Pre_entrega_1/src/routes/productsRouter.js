@@ -34,6 +34,7 @@ productsRouter.put("/:pid", async (req, res) => {
     const id = req.params.pid;
     const dataToUpdate = req.body;
     console.log(id, dataToUpdate);
+    
     try {
       const updatedProduct = await productManager.updateProduct(id, dataToUpdate);
       res.json({ message: "producto actualizado con éxito", updatedProduct });
@@ -44,7 +45,7 @@ productsRouter.put("/:pid", async (req, res) => {
   
 productsRouter.delete("/:pid", async (req, res) => {
     const id = req.params.pid;
-    const deletedProduct = await productManager.deleteProductById(id);
+    const deletedProduct = await productManager.deleteProduct(id);
     res.json({ message: "producto eliminado con éxito", deletedProduct });
 });
   
